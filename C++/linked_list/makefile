@@ -7,11 +7,8 @@ CXXFLAGS= -std=c++11 -Wall
 
 OBJS = $(SRCS:.cpp=.o)
 
-execute: recompile resetconsole all
+execute: resetconsole all
 	./$(TARGET).exe
-
-recompile:
-	make clean
 
 resetconsole:
 	reset

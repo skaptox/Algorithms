@@ -9,59 +9,76 @@ using std::endl;
 int main() {
   List<int> my_list;
 
-  my_list.push_front(2);
-  my_list.push_front(1);
+  cout << "Testing push_front: ";
+  for (int i = 1; i <= 5; ++i)
+     my_list.push_front(i);
 
-  my_list.push_back(4);
-  my_list.push_back(5);
-  my_list.push_back(6);
+  for (int i = 0; i < my_list.size(); ++i)
+    cout << my_list.at(i);
+  cout <<  endl;
 
-  my_list.insert(1, 3);
-
-  cout << "Tamaño: " << my_list.size() << endl;
-
-  while (my_list.size()) {
-    cout << my_list.front() << endl;
+  cout << "Testing pop_front and front: ";
+  while (!my_list.is_empty()) {
+    cout << my_list.front();
     my_list.pop_front();
   }
-  cout << "Tamaño: " << my_list.size() << endl;
+  cout << " Is list empty? " << std::boolalpha << my_list.is_empty();
+  cout <<  endl;
 
+  cout << "Testing push_back: ";
+  for (int i = 1; i <= 5; ++i)
+     my_list.push_back(i);
 
-  my_list.push_front(1);
-  my_list.push_back(2);
-  my_list.push_back(4);
-  my_list.push_back(5);
-  my_list.push_front(0);
-  my_list.insert(2, 3);
+  for (int i = 0; i < my_list.size(); ++i)
+    cout << my_list.at(i);
+  cout <<  endl;
 
-  my_list.erase(0);
-
-  while (my_list.size()) {
-    cout << my_list.back() << endl;
+  cout << "Testing pop_back and back: ";
+  while (!my_list.is_empty()) {
+    cout << my_list.back();
     my_list.pop_back();
   }
+  cout << " Is list empty? " << std::boolalpha << my_list.is_empty();
+  cout <<  endl;
 
-  cout << "Tamaño: " << my_list.size() << endl;
+  cout << "Testing insert: ";
+  for (int i = 1; i <= 5; i+=2)
+     my_list.push_back(i);
 
-  my_list.push_front(2);
-  my_list.push_front(1);
+  cout << "Before: ";
 
-  my_list.push_back(4);
-  my_list.push_back(5);
-  my_list.push_back(6);
+  for (int i = 0; i < my_list.size(); ++i)
+    cout << my_list.at(i);
 
-  my_list.insert(1, 3);
+  cout << " After: ";
 
-  cout << "Tamaño: " << my_list.size() << endl;
+  my_list.insert(1, 2);
+  my_list.insert(3, 4);
 
-  my_list.erase(1);
-  my_list.erase(1);
-  my_list.erase(1);
-  my_list.erase(1);
-  my_list.erase(1);
+  for (int i = 0; i < my_list.size(); ++i)
+    cout << my_list.at(i);
+  cout <<  endl;
+
+  cout << "Testing erase: ";
+  while (my_list.size() - 1)
+    my_list.erase(1);
   my_list.erase(0);
 
-  cout << "Tamaño: " << my_list.size() << endl;
+  cout << "Is list empty? " << std::boolalpha << my_list.is_empty();
+  cout <<  endl;
+
+  cout << "Fill using push front and push back \n";
+
+  for (int i = 1; i <= 5; ++i) {
+    my_list.push_front(i);
+    my_list.push_back(i);
+  }
+
+  cout << "List contains: ";
+  for (int i = 0; i < my_list.size(); ++i)
+    cout << my_list.at(i);
+
+  cout << "..the destructor will delete them!" << endl;
 
   return 0;
 }

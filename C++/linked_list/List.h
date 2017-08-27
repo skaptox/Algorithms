@@ -11,12 +11,13 @@ template<typename T>
 class List {
  public:
   List() : head(nullptr), tail(nullptr), size_(0) {}
-  ~List() {}
+  ~List();
   inline bool is_empty() const {return size_ == 0;}
   inline size_t size() const {return size_;}
   inline T back() const { return tail->value(); }
   inline T front() const { return head->value(); }
 
+  T& at(const size_t &pos);
   void erase(const size_t &pos);
   void insert(const size_t &pos, const T &val);
   void pop_back();
@@ -31,20 +32,32 @@ class List {
 };
 
 template<typename T>
+T& List<T>::at(const size_t &pos) {
+  if (pos < size()) {
+    Node<T> *current = head;
+    for (int i = 0; i < pos && current->next(); ++i) {
+      current = current->next();
+    }
+    return current->value();
+
+  } else {
+    std::cerr << "Error: List index out of range" << std::endl;
+    exit(EXIT_FAILURE);
+  }
+}
+
+template<typename T>
 void List<T>::erase(const size_t &pos) {
-  if (pos < size() && !is_empty()) {
+  if (pos < size()) {
     if (pos == 0) {
       pop_front();
     } else if (pos == size()- 1) {
       pop_back();
       } else {
-        size_t idx = 1;
         Node<T> *prev = head;
 
-        while (idx < pos) {
+        for (int i = 1; i < pos && prev->next(); ++i)
           prev = prev->next();
-          idx++;
-        }
 
         Node<T> *current = prev->next();
         prev->set_next(current->next());
@@ -54,6 +67,7 @@ void List<T>::erase(const size_t &pos) {
       }
   } else {
      std::cerr << "Error: List index out of range" << std::endl;
+     exit(EXIT_FAILURE);
   }
 }
 
@@ -65,7 +79,7 @@ void List<T>::insert(const size_t &pos, const T &val) {
       } else {
         Node<T> *prev = head;
 
-        for (int i = 0; i < pos && prev->next(); ++i)
+        for (int i = 1; i < pos && prev->next(); ++i)
           prev = prev->next();
 
         Node<T> *new_node = new Node<T>(val);
@@ -76,6 +90,7 @@ void List<T>::insert(const size_t &pos, const T &val) {
       }
     } else {
        std::cerr << "Error: List index out of range" << std::endl;
+       exit(EXIT_FAILURE);
     }
   }
 
@@ -90,6 +105,9 @@ void List<T>::pop_back() {
     delete tail;
     tail = prev;
     size_--;
+  } else {
+    std::cerr << "Error: List is empty" << std::endl;
+    exit(EXIT_FAILURE);
   }
 }
 
@@ -103,6 +121,7 @@ void List<T>::pop_front() {
     size_--;
   } else {
     std::cerr << "Error: List is empty" << std::endl;
+    exit(EXIT_FAILURE);
   }
 }
 
@@ -127,11 +146,21 @@ void List<T>::push_front(const T &val) {
   Node<T> *new_node = new Node<T>(val);
 
   if (is_empty())
-    tail = new_node;
+    head = tail = new_node;
 
   new_node->set_next(head);
   head = new_node;
   size_++;
+}
+
+template<typename T>
+List<T>::~List() {
+  Node<T> *prev = head;
+  while (prev) {
+    Node<T> *current = prev->next();
+    delete prev;
+    prev = current;
+  }
 }
 
 #endif  // _HOME_OSCAR_PRACTICES_CPP_LINKED_LIST_LIST_H_
