@@ -11,7 +11,7 @@ def heap_sort(arr):
 
     for c_idx, child in enumerate(arr):
         while True:
-            father = (c_idx >>1) - (0 if c_idx  & 1 else 1)
+            father = (c_idx >> 1) - (0 if c_idx  & 1 else 1)
             if father < 0 or arr[father] >= child:
                 break
             arr[c_idx], arr[father] = arr[father], arr[c_idx]
