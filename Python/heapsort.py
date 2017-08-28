@@ -6,6 +6,7 @@ import random
 import time
 
 def heap_sort(arr):
+    
     """ Making the heap """
     for c_idx, child in enumerate(arr):
         while True:
