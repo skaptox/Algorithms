@@ -22,7 +22,7 @@ def heap_sort(arr):
         arr[ult], arr[0] = arr[0], arr[ult]
         father = 0
         while True:
-            left_child = (father<<1) + 1
+            left_child = (father << 1) + 1
             right_child = left_child + 1
 
             if left_child >= ult:
