@@ -106,7 +106,7 @@ void Vector<T>::erase(const size_t &index) {
 template<typename T>
 void Vector<T>::remove(const T &val) {
   int index;
-  while((index = find(val)) == -1) {
+  while((index = find(val)) != -1) {
     erase(index);
   }
 }

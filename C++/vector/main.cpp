@@ -9,11 +9,15 @@ using std::endl;
 int main() {
   Vector<int> vec;
 
- bool state;
+  bool state;
   vec.push(0);
-  for (int i = 129; i >= 1; --i)
+  for (int i = 0; i < 100; ++i)
+  {
     state = !state;
     vec.insert(0,state);
+  }
+
+  vec.remove(0);
 
   for (int i = 0; i < vec.size(); ++i)
     cout << vec.at(i) << ",";
