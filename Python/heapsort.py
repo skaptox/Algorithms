@@ -6,8 +6,8 @@ import random
 import time
 
 def heap_sort(arr):
-    
-    # Making the heap 
+
+    # Making the heap
     for c_idx, child in enumerate(arr):
         while True:
             father = (c_idx >> 1) - (0 if c_idx  & 1 else 1)
