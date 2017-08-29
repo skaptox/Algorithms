@@ -97,6 +97,9 @@ void Vector<T>::erase(const size_t &index) {
     std::cerr << "Error: Vector is empty" << std::endl;
     exit(EXIT_FAILURE);
   }
+  if (size_ && capacity_ / size_ > kShrinkFactor) {
+    decrease_size();
+  }
 }
 
 template<typename T>
@@ -187,6 +190,10 @@ void Vector<T>::remove(const T &val) {
   while ((index = find(val)) != -1) {
     erase(index);
   }
+
+  if (size_ && capacity_ / size_ > kShrinkFactor) {
+    decrease_size();
+  }
 }
 
 template<typename T>
@@ -196,6 +203,9 @@ void Vector<T>::remove_if(F function) {
     if (function(*(array_ + i))) {
       erase(i--);  // redo
     }
+  }
+  if (size_ && capacity_ / size_ > kShrinkFactor) {
+    decrease_size();
   }
 }
 
