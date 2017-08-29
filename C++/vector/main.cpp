@@ -1,28 +1,14 @@
 // Copyright (c) 2017 Oscar Albornoz. All rights reserved.
 
+#include <assert.h>
 #include <iostream>
+
 #include "Vector.h"
+#include "Vector_test.h"
 
-using std::cout;
-using std::endl;
-
-int main() {
-  Vector<int> vec;
-
-  bool state;
-  vec.push(0);
-  for (int i = 0; i < 100; ++i)
-  {
-    state = !state;
-    vec.insert(0,state);
-  }
-
-  vec.remove(0);
-
-  for (int i = 0; i < vec.size(); ++i)
-    cout << vec.at(i) << ",";
-  cout << endl;
-
-
-  return 0;
+int main(int argc, char *argv[]) {
+  jw::JVectorTest tester;
+  tester.RunTests();
+  std::cout << "Aproved all tests" << std::endl;
+  return EXIT_SUCCESS;
 }

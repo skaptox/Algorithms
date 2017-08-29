@@ -1,6 +1,6 @@
 
 TARGET = test
-SRCS = main.cpp
+SRCS = main.cpp Vector_test.cpp
 
 CXX = clang++
 CXXFLAGS= -std=c++11
