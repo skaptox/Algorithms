@@ -93,16 +93,18 @@ void List<T>::insert(const size_t &pos, const T &val) {
     }
   }
 
+using namespace std;
+
 template<typename T>
 void List<T>::pop_back() {
   if (!is_empty()) {
     Node<T> *prev = head;
-
-    while (prev->next() && prev->next() != tail)
+    while (prev->next() && prev->next() != tail) {
       prev = prev->next();
-
+    }
     delete tail;
     tail = prev;
+    tail->set_next(nullptr);
     size_--;
   } else {
     std::cerr << "Error: List is empty" << std::endl;
@@ -118,6 +120,7 @@ void List<T>::pop_front() {
     head = head->next();
     delete first_node;
     size_--;
+
   } else {
     std::cerr << "Error: List is empty" << std::endl;
     exit(EXIT_FAILURE);
@@ -144,21 +147,25 @@ template<typename T>
 void List<T>::push_front(const T &val) {
   Node<T> *new_node = new Node<T>(val);
 
-  if (is_empty())
-    head = tail = new_node;
+  if (is_empty()) {
+    tail = new_node;
+  } else {
+    new_node->set_next(head);
+  }
 
-  new_node->set_next(head);
   head = new_node;
   size_++;
 }
 
 template<typename T>
 List<T>::~List() {
-  Node<T> *prev = head;
-  while (prev) {
-    Node<T> *current = prev->next();
-    delete prev;
-    prev = current;
+  if(!is_empty()) {
+    Node<T> *prev = head;
+    while (prev) {
+      Node<T> *current = prev->next();
+      delete prev;
+      prev = current;
+    }
   }
 }
 
