@@ -1,7 +1,7 @@
 // Copyright (c) 2017 Oscar Albornoz. All rights reserved.
 
 #include <iostream>
-#include "List.h"
+#include "list.h"
 
 using std::cout;
 using std::endl;

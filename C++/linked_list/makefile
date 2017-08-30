@@ -1,11 +1,11 @@
 
 TARGET = test
-SRCS = main.cpp
+SRCS = main.cc
 
 CXX = clang++
 CXXFLAGS= -std=c++11 -Wall
 
-OBJS = $(SRCS:.cpp=.o)
+OBJS = $(SRCS:.cc=.o)
 
 execute: resetconsole all
 	./$(TARGET).exe

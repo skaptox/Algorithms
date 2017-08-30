@@ -3,12 +3,11 @@
 #include <assert.h>
 #include <iostream>
 
-#include "Vector.h"
-#include "Vector_test.h"
+#include "queue_linked_list.h"
+#include "test/queue_list_tests.h"
 
 int main(int argc, char *argv[]) {
-  jw::JVectorTest tester;
-  tester.RunTests();
+  run_all_tests();
   std::cout << "Aproved all tests" << std::endl;
   return EXIT_SUCCESS;
 }

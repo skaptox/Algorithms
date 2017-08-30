@@ -1,13 +1,16 @@
+
 TARGET = test
 SRCS = main.cc
 
 CXX = clang++
-CXXFLAGS= -std=c++11 -Wall
-
+CXXFLAGS= -std=c++11
 OBJS = $(SRCS:.cc=.o)
 
-execute: resetconsole all
+execute: makeclean resetconsole all
 	./$(TARGET).exe
+
+makeclean:
+	make clean
 
 resetconsole:
 	reset
@@ -20,3 +23,6 @@ $(OBJS):$(SRCS)
 
 clean:
 	rm -fr *.o *.exe *.out
+
+
+

@@ -3,9 +3,8 @@
 #ifndef _HOME_OSCAR_PRACTICES_CPP_LINKED_LIST_LIST_H_
 #define _HOME_OSCAR_PRACTICES_CPP_LINKED_LIST_LIST_H_
 
-#include "Node.h"
-
 #include <iostream>
+#include "node.h"
 
 template<typename T>
 class List {
