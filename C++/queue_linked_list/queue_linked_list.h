@@ -41,7 +41,7 @@ T Queue<T>::dequeue() {
   T oldest_value = oldest_node->value(); 
 
   if (rear != rear->next()) {
-    oldest_node = rear->next();  // newest node points to oldest node
+    oldest_node = rear->next();  // because newest node points to oldest node
     oldest_value = oldest_node->value();
     rear->set_next(oldest_node ->next());  // newest node points new oldest node
   } else {
