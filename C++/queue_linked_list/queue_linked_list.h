@@ -29,8 +29,8 @@ void Queue<T>::enqueue(const T &val) {
     rear = new_node;
     new_node->set_next(new_node);
   } else {
-    new_node->set_next(rear->next());
-    rear->set_next(new_node);
+    new_node->set_next(rear->next());  // newest node points at the oldest node
+    rear->set_next(new_node);  // the previous newest node points at the newest node
     rear = new_node;
   }
 }
