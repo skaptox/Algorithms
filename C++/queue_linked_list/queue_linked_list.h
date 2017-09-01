@@ -29,8 +29,8 @@ void Queue<T>::enqueue(const T &val) {
     rear = new_node;
     new_node->set_next(new_node);
   } else {
-    new_node->set_next(rear->next());
-    rear->set_next(new_node);
+    new_node->set_next(rear->next());  // newest node points at oldest node
+    rear->set_next(new_node);  // previous newest node points at newest node
     rear = new_node;
   }
 }
@@ -38,16 +38,16 @@ void Queue<T>::enqueue(const T &val) {
 template <typename T>
 T Queue<T>::dequeue() {
   Node<T> *oldest_node = rear;
-  T oldest_value = oldest_node->value();
+  T oldest_value = oldest_node->value(); 
 
   if (rear != rear->next()) {
-    oldest_node = rear->next();
+    oldest_node = rear->next();  // because newest node points to oldest node
     oldest_value = oldest_node->value();
-    rear->set_next(oldest_node ->next());
+    rear->set_next(oldest_node ->next());  // newest node points new oldest node
   } else {
     rear = nullptr;
   }
-  delete oldest_node;
+  delete oldest_node; 
   return oldest_value;
 }
 
