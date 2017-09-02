@@ -6,39 +6,38 @@ import random
 import time
 
 def heap_sort(arr):
-
-    # Making the heap
-    for c_idx, child in enumerate(arr):
-        while True:
-            father = (c_idx >> 1) - (0 if c_idx  & 1 else 1)
-            if father < 0 or arr[father] >= child:
-                break
-            arr[c_idx], arr[father] = arr[father], arr[c_idx]
-            c_idx = father
-
-    # Sorting the array
-    for i in range(1, len(arr)):
-        ult = len(arr) - i
-        arr[ult], arr[0] = arr[0], arr[ult]
-        father = 0
-        while True:
-            left_child = (father << 1) + 1
-            right_child = left_child + 1
-
-            if left_child >= ult:
-                break
-
-            if right_child >= ult:
-                right_child = left_child
-
-            child = left_child if arr[left_child] >= arr[right_child] else right_child
-
-            if arr[father] >= arr[child]:
-                break
-
-            arr[child], arr[father] = arr[father], arr[child]
-            father = child
+    max_heapify(arr)
+    for end in reversed(range(len(arr))):
+        arr[end], arr[0] = arr[0], arr[end]
+        sift_down(arr,0,end-1)
     return arr
+
+def max_heapify(arr):
+    mid = (len(arr) >> 1)
+    for i in reversed(range(mid)):
+        sift_down(arr,i,len(arr)-1)
+
+def sift_down(arr, father, end):
+    while True:
+        left_child = (father << 1) + 1
+        right_child = left_child + 1
+
+        if left_child > end:
+            break
+
+        if right_child > end:
+            right_child = left_child
+
+        if arr[left_child] >= arr[right_child]:
+            greater_child = left_child
+        else:
+            greater_child = right_child
+
+        if arr[father] >= arr[greater_child]:
+                break
+
+        arr[greater_child], arr[father] = arr[father], arr[greater_child]
+        father = greater_child
 
 def main():
     """
