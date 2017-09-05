@@ -1,5 +1,8 @@
 // Copyright (c) 2017 Oscar Albornoz. All rights reserved.
 
+// Hashing with Chaining
+// Image reference: https://goo.gl/4DMkrH
+
 #ifndef _HOME_OSCAR_PRACTICES_CPP_HASH_TABLE_HASH_TABLE_H_
 #define _HOME_OSCAR_PRACTICES_CPP_HASH_TABLE_HASH_TABLE_H_
 
@@ -48,7 +51,7 @@ const std::function<size_t(TKey)> h) : size_(s), hash_(h) {
   data_ = new HashObject<TKey, TValue>*[size_];
 }
 
-// Add item to table
+// Add item to table (to beggining of the list because is O(1))
 
 template<typename TKey, typename TValue>
 void HashTable<TKey, TValue>::add(const TKey &k, const TValue &v) {
@@ -144,22 +147,19 @@ void HashTable<TKey, TValue>::remove(const TKey &k) {
         if (item->next()) {  // If there are least two items in the list
           if (prev_item) {  // If the item to delete is in the list's middle
             prev_item->set_next(item->next());
-            delete item;
           } else {  // If the item to delete is the list's first
             prev_item = item->next();
-            delete data_[index];
             data_[index] = prev_item;
           }
         } else {
           if (item == data_[index]) {  // If there is only one element
-            delete data_[index];
             data_[index] = nullptr;
           } else {
-            prev_item->set_next(nullptr);
-            delete item;  // If the item to delete is the last
+            prev_item->set_next(nullptr);  // If the item to delete is the last
           }
-          break;
         }
+        delete item;
+        return;
       }
       prev_item = item;
       item = item->next();
