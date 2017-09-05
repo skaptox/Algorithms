@@ -4,16 +4,13 @@
 #define _HOME_OSCAR_PRACTICES_CPP_HASH_TABLE_HASH_OBJECT_H_
 
 #include <iostream>
-#include <functional>
-
-using std::cout;
-using std::endl;
 
 template<typename TKey, typename TValue>
 class HashObject {
  public:
   HashObject() : key_(0), value_(0), next_(nullptr) {}
-  HashObject(const TKey &k,const TValue &v) : key_(k), value_(v), next_(nullptr) {}
+  HashObject(const TKey &k, const TValue &v) : key_(k), value_(v),
+  next_(nullptr) {}
 
   HashObject(const HashObject<TKey, TValue>&) = delete;
   HashObject operator=(const HashObject<TKey, TValue>&) = delete;
