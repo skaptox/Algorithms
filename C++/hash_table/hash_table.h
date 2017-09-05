@@ -1,6 +1,6 @@
 // Copyright (c) 2017 Oscar Albornoz. All rights reserved.
 
-// Hashing with Chaining
+// Hashi Table with Chaining
 // Reference Image: https://goo.gl/4DMkrH
 
 
