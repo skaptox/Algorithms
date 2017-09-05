@@ -1,5 +1,7 @@
 // Copyright (c) 2017 Oscar Albornoz. All rights reserved.
 
+// Reference Image : https://screenshots.firefoxusercontent.com/images/54290b3c-a80a-411c-9d05-fe951f3bd30f.png
+
 #ifndef _HOME_OSCAR_PRACTICES_CPP_QUEUE_LINKED_LIST_QUEUE_LINKED_LIST_H_
 #define _HOME_OSCAR_PRACTICES_CPP_QUEUE_LINKED_LIST_QUEUE_LINKED_LIST_H_
 
@@ -38,7 +40,7 @@ void Queue<T>::enqueue(const T &val) {
 template <typename T>
 T Queue<T>::dequeue() {
   Node<T> *oldest_node = rear;
-  T oldest_value = oldest_node->value(); 
+  T oldest_value = oldest_node->value();
 
   if (rear != rear->next()) {
     oldest_node = rear->next();  // because newest node points to oldest node
@@ -47,7 +49,7 @@ T Queue<T>::dequeue() {
   } else {
     rear = nullptr;
   }
-  delete oldest_node; 
+  delete oldest_node;
   return oldest_value;
 }
 
