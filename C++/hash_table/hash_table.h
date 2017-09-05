@@ -149,8 +149,7 @@ void HashTable<TKey, TValue>::remove(const TKey &k) {
           if (prev_item) {  // If the item to delete is in the list's middle
             prev_item->set_next(item->next());
           } else {  // If the item to delete is the list's first
-            prev_item = item->next();
-            data_[index] = prev_item;
+            data_[index] = item->next();
           }
         } else {
           if (item == data_[index]) {  // If there is only one element
