@@ -34,7 +34,7 @@ def sift_down(arr, father, end):
             greater_child = right_child
 
         if arr[father] >= arr[greater_child]:
-                break
+            break
 
         arr[greater_child], arr[father] = arr[father], arr[greater_child]
         father = greater_child
@@ -44,7 +44,7 @@ def main():
     Testing the function
     """
     random.seed(1)
-    arr = list(random.randint(-5000, 100000) for i in range(100000))
+    arr = list(random.randint(0, 100000) for i in range(100000))
     copy_one = copy_two = arr
 
     start = time.clock()
