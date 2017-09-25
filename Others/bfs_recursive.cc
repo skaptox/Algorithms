@@ -117,17 +117,17 @@ void bfs(Node* node) {
   }
 }
 
-void bfs_rec(Node* node, int level, int h) {
+void bfs_rec(Node* node, int level, int height) {
   if (!node)
     return;
 
-  if (level == h) {
+  if (level == height) {
     cout << node->key << ", ";
     return;
   }
 
-  bfs_rec(node->left, level, h-1);
-  bfs_rec(node->right, level, h-1);
+  bfs_rec(node->left, level, height - 1);
+  bfs_rec(node->right, level, height - 1);
 }
 
 void poda(Node* node) {
@@ -154,7 +154,7 @@ void poda_rec(Node* node, int level, int min_h) {
   poda_rec(node->right, level + 1, min_h);
 }
 
-// =end Relevant code
+// Relevant code =end
 
 void bfs_queue(Node* node) {
   if (!node)
