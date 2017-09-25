@@ -28,22 +28,15 @@ void delete_tree(Node* node);
 
 int main(int argc, char const *argv[]) {
   srand(time(0));
-  Node* root = make_tree(10);
+  Node* root = make_tree(20);
 
-  clock_t a,b;
-
-  a = clock();
+  cout << "BFS space O(n): ";
   bfs_queue(root);
-  b = clock();
 
-  cout << "Time BFS space O(n): " << (double)(b-a) / CLOCKS_PER_SEC;
   cout << endl;
 
-  a = clock();
+  cout << "BFS space O(1): ";
   bfs_recursive(root);
-  b = clock();
-
-  cout << "Time BFS space O(1): " << (double)(b-a) / CLOCKS_PER_SEC;
   cout << endl;
 
   delete_tree(root);
