@@ -52,6 +52,9 @@ int main(int argc, char const *argv[]) {
   cout << "Time BFS space O(1): " << (double)(b-a) / CLOCKS_PER_SEC;
   cout << endl;
 
+  cout << test_string_1 << endl;
+  cout << test_string_2 << endl;
+
   cout << "Are results equals?: " << std::boolalpha << (test_string_1 == test_string_2) << endl;
 
 
@@ -66,6 +69,7 @@ Node* make_tree(int num) {
   int i = rand() % num;
   node->left = make_tree(i);
   node->right = make_tree(num - i - 1);
+  return node;
 }
 
 int height(Node* node) {
