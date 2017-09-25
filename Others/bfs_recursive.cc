@@ -26,15 +26,9 @@ void bfs_rec(Node* node, int level, int height);
 void bfs_recursive(Node* node);
 void delete_tree(Node* node);
 
-
-std::string test_string_1;
-std::string test_string_2;
-
-
 int main(int argc, char const *argv[]) {
   srand(time(0));
   Node* root = make_tree(10);
-
 
   clock_t a,b;
 
@@ -51,12 +45,6 @@ int main(int argc, char const *argv[]) {
 
   cout << "Time BFS space O(1): " << (double)(b-a) / CLOCKS_PER_SEC;
   cout << endl;
-
-  cout << test_string_1 << endl;
-  cout << test_string_2 << endl;
-
-  cout << "Are results equals?: " << std::boolalpha << (test_string_1 == test_string_2) << endl;
-
 
   delete_tree(root);
   return 0;
@@ -89,7 +77,7 @@ void bfs_queue(Node* node) {
     Node* cur = que.front();
     que.pop();
 
-    test_string_1 += cur->key;
+    cout << cur->key << ", ";
 
     if (cur->left)
       que.push(cur->left);
@@ -100,7 +88,7 @@ void bfs_queue(Node* node) {
 
 void bfs_rec(Node* node, int level, int h) {
   if (level == h) {
-    test_string_2 += node->key;
+    cout << node->key << ", ";
     return;
   }
   if (node->left)
