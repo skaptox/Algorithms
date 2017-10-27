@@ -45,7 +45,7 @@ vector<int> to_vec(string str) {
   vector<int> v;
 
   for (int i = 0; i < str.size(); ++i) {
-    while(isdigit(str[i])) {
+    while(isdigit(str[i]) || str[i] == '-') {
       digit += str[i++];
     }
     v.push_back(stoi(digit));
@@ -84,20 +84,23 @@ int main(int argc, char const *argv[]) {
   for (int i = 0; i < n; ++i) {
     int k;
     cin >> k;
+    cin.ignore(256,'\n');
 
     string str;
     getline(cin, str);
 
     std::vector<string> str_vec = split(str, " ");
     std::vector<std::vector<int>> vec;
+
     for ( auto i : str_vec) {
       vec.push_back(to_vec(i));
     }
 
-    auto same_size = [&](const vector<int>&v) {return v.size() == vec[0].size();};
+    auto same_size = [&](const vector<int> &v) {return v.size() == vec[0].size();};
 
     if (all_of(vec.begin(), vec.end(), same_size)) {
       std::vector<int> vec_sol;
+
       for (int i = 0; i < vec[0].size(); ++i) {
         int c = 0;
         for (int j = 0; j < k; ++j) {
