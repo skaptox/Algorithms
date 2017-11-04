@@ -22,10 +22,10 @@ void combinations(Ull p, const vector<Ull> &opciones, vector<Ull> base = {}) {
     global_vec.push_back(base);
   } else return;
 
-  vector<Ull> opc = opciones;
+  vector<Ull> opc(opciones);
   for (int i = 0; i < opciones.size(); ++i) {
     opc.erase(opc.begin());
-    vector<Ull> b = base;
+    vector<Ull> b(base);
     b.push_back(opciones[i]);
     combinations(p, opc, b);
   }
