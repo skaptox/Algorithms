@@ -13,7 +13,12 @@ vector<vector<Ull>> global_vec;
 
 void combinations(Ull p, vector<Ull> opciones, vector<Ull> base = {}) {
   Ull sum = 0;
-  sum = accumulate(base.begin(),base.end(), sum);
+  auto i = base.begin();
+  while(sum < p && i != base.end()) {
+    sum += *i;
+    ++i;
+  }
+
   if (sum <= p) {
     global_vec.push_back(base);
   } else return;
