@@ -11,7 +11,7 @@ using namespace std;
 using Ull = unsigned long long;
 vector<vector<Ull>> global_vec;
 
-void combinations(Ull p, const vector<Ull> &opciones, vector<Ull> base = {}) {
+void combinations(Ull p, const vector<Ull> &opciones, vector<Ull> &base) {
   Ull sum = 0;
 
   for (int i = 0; i < base.size(); ++i) {
@@ -45,7 +45,9 @@ int main(int argc, char const *argv[])
     warlocks.push_back(wp);
   }
 
-  combinations(p, warlocks);
+  vector<Ull> base;
+  combinations(p, warlocks, base);
   cout << global_vec.size() - 1 << endl;
+
   return 0;
 }
