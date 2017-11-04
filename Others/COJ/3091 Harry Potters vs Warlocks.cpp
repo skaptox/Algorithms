@@ -11,7 +11,7 @@ using namespace std;
 using Ull = unsigned long long;
 vector<vector<Ull>> global_vec;
 
-void combinations(Ull p, const vector<Ull> &opciones, vector<Ull> &base) {
+void combinations(Ull p, const vector<Ull> &options, vector<Ull> &base) {
   Ull sum = 0;
 
   for (int i = 0; i < base.size(); ++i) {
@@ -22,11 +22,11 @@ void combinations(Ull p, const vector<Ull> &opciones, vector<Ull> &base) {
     global_vec.push_back(base);
   } else return;
 
-  vector<Ull> opc(opciones);
-  for (int i = 0; i < opciones.size(); ++i) {
+  vector<Ull> opc(options);
+  for (int i = 0; i < options.size(); ++i) {
     opc.erase(opc.begin());
     vector<Ull> b(base);
-    b.push_back(opciones[i]);
+    b.push_back(options[i]);
     combinations(p, opc, b);
   }
 }
