@@ -11,22 +11,22 @@ using namespace std;
 using Ull = unsigned long long;
 vector<vector<Ull>> global_vec;
 
-void combinations(Ull p, vector<Ull> opciones, vector<Ull> base = {}) {
+void combinations(Ull p, const vector<Ull> &opciones, vector<Ull> base = {}) {
   Ull sum = 0;
 
-  sum = accumulate(base.begin(),base.end(), sum);
+  for (int i = 0; i < base.size(); ++i) {
+    sum += base[i];
+  }
 
   if (sum <= p) {
     global_vec.push_back(base);
   } else return;
 
   vector<Ull> opc = opciones;
-  for (const auto &i : opciones) {
+  for (int i = 0; i < opciones.size(); ++i) {
     opc.erase(opc.begin());
-
     vector<Ull> b = base;
-    b.push_back(i);
-
+    b.push_back(opciones[i]);
     combinations(p, opc, b);
   }
 }
