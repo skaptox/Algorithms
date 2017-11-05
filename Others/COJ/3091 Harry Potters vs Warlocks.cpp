@@ -5,6 +5,7 @@
 #include <numeric>
 #include <array>
 #include <functional>
+#include <algorithm>
 
 using namespace std;
 
@@ -31,8 +32,7 @@ void combinations(Ull p, const vector<Ull> &options, vector<Ull> &base) {
   }
 }
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
   int n;
   Ull p;
   cin >> n >> p;
