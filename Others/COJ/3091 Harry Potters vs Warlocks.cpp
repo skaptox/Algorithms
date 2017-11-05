@@ -12,7 +12,7 @@ using namespace std;
 using Ull = unsigned long long;
 Ull sets = 0;
 
-void combinations(Ull p, const vector<Ull> &options, vector<Ull> &base) {
+void combinations(Ull p, vector<Ull> &options, vector<Ull> &base) {
   Ull sum = 0;
 
   for (int i = 0; i < base.size(); ++i) {
