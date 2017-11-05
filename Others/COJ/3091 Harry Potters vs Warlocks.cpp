@@ -10,7 +10,7 @@
 using namespace std;
 
 using Ull = unsigned long long;
-vector<vector<Ull>> global_vec;
+Ull sets = 0;
 
 void combinations(Ull p, const vector<Ull> &options, vector<Ull> &base) {
   Ull sum = 0;
@@ -20,7 +20,7 @@ void combinations(Ull p, const vector<Ull> &options, vector<Ull> &base) {
   }
 
   if (sum <= p) {
-    global_vec.push_back(base);
+    sets++;
   } else return;
 
   vector<Ull> opc(options);
@@ -47,7 +47,7 @@ int main(int argc, char const *argv[]) {
 
   vector<Ull> base;
   combinations(p, warlocks, base);
-  cout << global_vec.size() - 1 << endl;
+  cout << sets - 1 << endl;
 
   return 0;
 }
