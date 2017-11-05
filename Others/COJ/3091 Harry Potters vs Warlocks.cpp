@@ -6,13 +6,14 @@
 #include <array>
 #include <functional>
 #include <algorithm>
+#include <math.h>
 
 using namespace std;
 
 using Ull = unsigned long long;
 Ull sets = 0;
 
-void combinations(const Ull &p, const deque<Ull> &options, deque<Ull> &base) {
+void combinations(const Ull &p, deque<Ull> &options, deque<Ull> &base) {
   Ull sum = 0;
 
   for (int i = 0; i < base.size(); ++i) {
@@ -40,14 +41,21 @@ int main(int argc, char const *argv[]) {
   deque<Ull> warlocks;
   int wp;
 
+  int sum = 0;
+
   for (int i = 0; i < n; ++i) {
     cin >> wp;
     warlocks.push_back(wp);
+    sum += wp;
   }
 
-  deque<Ull> base;
-  combinations(p, warlocks, base);
-  cout << sets - 1 << endl;
+  if (sum > p) {
+    deque<Ull> base;
+    combinations(p, warlocks, base);
+    cout << sets - 1 << endl;
+  } else {
+    cout << pow(2,warlocks.size()) - 1 << endl;
+  }
 
   return 0;
 }
