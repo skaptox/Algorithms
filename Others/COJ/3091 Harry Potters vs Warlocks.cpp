@@ -1,7 +1,7 @@
 // Copyright (c) 2017 Oscar Albornoz. All rights reserved.
 
 #include <iostream>
-#include <vector>
+#include <deque>
 #include <numeric>
 #include <array>
 #include <functional>
@@ -12,7 +12,7 @@ using namespace std;
 using Ull = unsigned long long;
 Ull sets = 0;
 
-void combinations(Ull p, vector<Ull> &options, vector<Ull> &base) {
+void combinations(const Ull &p, const deque<Ull> &options, deque<Ull> &base) {
   Ull sum = 0;
 
   for (int i = 0; i < base.size(); ++i) {
@@ -23,12 +23,12 @@ void combinations(Ull p, vector<Ull> &options, vector<Ull> &base) {
     sets++;
   } else return;
 
-  vector<Ull> opc(options);
+  deque<Ull> opc(options);
   for (int i = 0; i < options.size(); ++i) {
-    opc.erase(opc.begin());
-    vector<Ull> b(base);
-    b.push_back(options[i]);
-    combinations(p, opc, b);
+    opc.pop_front();
+    base.push_back(options[i]);
+    combinations(p, opc, base);
+    base.pop_back();
   }
 }
 
@@ -37,7 +37,7 @@ int main(int argc, char const *argv[]) {
   Ull p;
   cin >> n >> p;
 
-  vector<Ull> warlocks;
+  deque<Ull> warlocks;
   int wp;
 
   for (int i = 0; i < n; ++i) {
@@ -45,7 +45,7 @@ int main(int argc, char const *argv[]) {
     warlocks.push_back(wp);
   }
 
-  vector<Ull> base;
+  deque<Ull> base;
   combinations(p, warlocks, base);
   cout << sets - 1 << endl;
 
