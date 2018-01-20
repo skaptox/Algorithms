@@ -3,7 +3,7 @@
 #include <iostream>
 #include <algorithm>
 
-using namespace std; // NOLINT
+using namespace std;
 
 void permute(string &str, int l, int r) {
   if (l == r) {
